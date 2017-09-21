@@ -65,16 +65,8 @@ class InstallSchema implements InstallSchemaInterface
             ['nullable' => false, 'default' => '0'],
             'Is answer added'
         )->addIndex(
-            $installer->getIdxName('contact_posts', ['post_id']),
-            ['post_id']
-        )->addIndex(
-            $setup->getIdxName(
-                $installer->getTable('contact_posts'),
-                ['post_id', 'status'],
-                AdapterInterface::INDEX_TYPE_FULLTEXT
-            ),
-            ['post_id', 'status'],
-            ['type' => AdapterInterface::INDEX_TYPE_FULLTEXT]
+            $installer->getIdxName('contact_posts', ['post_id','status']),
+            ['post_id','status']
         )->setComment(
             'Contact Posts table'
         );
