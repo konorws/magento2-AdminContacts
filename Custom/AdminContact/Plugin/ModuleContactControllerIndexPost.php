@@ -5,10 +5,13 @@ namespace Custom\AdminContact\Plugin;
 class ModuleContactControllerIndexPost
 {
     protected $request;
+    protected $_objectManager;
     
     public function __construct(
+        \Magento\Framework\ObjectManagerInterface $objectmanager,
         \Magento\Framework\App\Request\Http $request
     ) {
+        $this->_objectManager = $objectmanager;
         $this->request = $request;
     }
 
@@ -17,6 +20,9 @@ class ModuleContactControllerIndexPost
 		$post = $this->request->getPostValue();
  		
  		if($post){
+
+            $error = false;
+
  			if (!\Zend_Validate::is(trim($post['name']), 'NotEmpty')) {
                 $error = true;
             }
@@ -30,7 +36,18 @@ class ModuleContactControllerIndexPost
                 throw new \Exception();
             }
 
-            
+            $contactModel = $this->_objectManager->create('Custom\AdminContact\Model\Contact');
+            $data = array(
+                'name'          => $post['name'],
+                'email'         => $post['email'],
+                'telephone'     => $post['telephone'],
+                'comment'       => $post['comment'],
+                'creation_time' => date('Y:m:d H:i:s'),
+                'status'        => 0
+            );
+
+            $result = $contactModel->setData($data)->save();
+             
  		}    
         
 	}
