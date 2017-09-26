@@ -1,13 +1,13 @@
 <?php
 
-namespace Custom\AdminContact\Controller\Adminhtml;
+namespace Custom\AdminContact\Controller\Adminhtml\Post;
 
 Class Index extends \Magento\Backend\App\Action
 {
 
     public function execute()
     {
-         echo ("hello World");
+         die ("hello World");
     }
 }
 
