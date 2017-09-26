@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
     <menu>
-        <add id="Custom_AdminContact::admcontact_posts" title="Contacts Us Posts" module="Custom_AdminContact" sortOrder="100" parent="Magento_Reports::report_salesroot" action="admcontact/posts/index" resource="Custom_AdminContact::admcontact_posts"/>
+        <add id="Custom_AdminContact::admcontact" title="Contacts Us Posts" module="Custom_AdminContact" sortOrder="100" parent="Magento_Reports::report_salesroot" action="admcontact/posts" resource="Custom_AdminContact::admcontact"/>
     </menu>
 </config>

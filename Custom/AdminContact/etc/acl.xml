@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- File: app/code/Pulsestorm/AclExample/etc/acl.xml -->    
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Custom_AdminContact::admcontact" title="AdminContacts Module" />
+            </resource>
+        </resources>
+    </acl>
+</config>
