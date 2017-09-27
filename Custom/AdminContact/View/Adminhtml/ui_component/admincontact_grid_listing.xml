@@ -47,6 +47,15 @@
     </listingToolbar>
 
     <columns name="admincontact_grid_columns">
+
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">post_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+
        <column name="post_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -113,5 +122,16 @@
                 </item>
             </argument>
         </column>
+
+        <actionsColumn name="actions" class="Custom\AdminContact\Ui\Component\GridViewAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">post_id</item>
+                    <item name="viewUrlPath" xsi:type="string">admcontact/post/edit</item>
+                    <item name="urlEntityParamName" xsi:type="string">post_id</item>
+                    <item name="Label" xsi:type="string">Edit</item>
+                </item>
+            </argument>
+        </actionsColumn>
     </columns>
 </listing>
