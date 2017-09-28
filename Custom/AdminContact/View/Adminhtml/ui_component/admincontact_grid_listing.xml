@@ -47,19 +47,9 @@
     </listingToolbar>
 
     <columns name="admincontact_grid_columns">
-
-        <selectionsColumn name="ids">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">post_id</item>
-                </item>
-            </argument>
-        </selectionsColumn>
-
        <column name="post_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                
                     <item name="sorting" xsi:type="string">asc</item>
                     <item name="label" xsi:type="string" translate="true">ID</item>
                     <item name="sortOrder" xsi:type="number">20</item>
@@ -123,7 +113,7 @@
             </argument>
         </column>
 
-        <actionsColumn name="actions" class="Custom\AdminContact\Ui\Component\GridViewAction">
+       <actionsColumn name="actions" class="Custom\AdminContact\Ui\Component\GridViewAction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">post_id</item>
