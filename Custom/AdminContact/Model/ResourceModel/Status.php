@@ -9,15 +9,8 @@ class Status implements \Magento\Framework\Data\OptionSourceInterface
     {   
         $options = [];
 
-        $options[0] = [
-            'label' => 'Not Answered',
-            'value' => 0
-        ];
-
-        $options[1] = [
-            'label' => 'Answered',
-            'value' => 1
-        ];
+        $options[0] = 'Not Answered';
+        $options[1] = 'Answered';
 
     
         return $options;

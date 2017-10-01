@@ -1,5 +1,6 @@
 <?php
-namespace Maxime\Jobs\Block\Adminhtml\Department\Edit;
+
+namespace Custom\AdminContact\Block\Adminhtml\Post\Edit;
  
 use \Magento\Backend\Block\Widget\Form\Generic;
  
@@ -22,29 +23,22 @@ class Form extends Generic
         $this->_objectManager = $objectmanager;
         parent::__construct($context, $registry, $formFactory, $data);
     }
- 
-    /**
-     * Init form
-     *
-     * @return void
-     */
+
     protected function _construct()
     {
         parent::_construct();
-        $this->setId('department_form');
-        $this->setTitle(__('Department Information'));
+        $this->setId('admincontact_form');
+        $this->setTitle(__('Contact Posts'));
     }
  
-    /**
-     * Prepare form
-     *
-     * @return $this
-     */
+
     protected function _prepareForm()
     {
         $model = $this->_objectManager->create('Custom\AdminContact\Model\Contact');
         
-       
+        $postId = $this->getRequest()->getParam('post_id');
+        $model->load($postId);
+
         $form = $this->_formFactory->create(
             ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post']]
         );
@@ -53,7 +47,7 @@ class Form extends Generic
  
         $fieldset = $form->addFieldset(
             'base_fieldset',
-            ['legend' => __('General Information'), 'class' => 'fieldset-wide']
+            ['legend' => __('Post'), 'class' => 'fieldset-wide']
         );
  
         if ($model->getId()) {
@@ -63,13 +57,58 @@ class Form extends Generic
         $fieldset->addField(
             'name',
             'text',
-            ['name' => 'name', 'label' => __('Department Name'), 'title' => __('Department Name'), 'required' => true]
+            ['name' => 'name', 'disabled' => 'disabled' ,'label' => __('Name'), 'title' => __('Name')]
+        );
+
+         $fieldset->addField(
+            'email',
+            'text',
+            ['name' => 'email', 'disabled' => 'disabled' ,'label' => __('Email'), 'title' => __('Email')]
+        );
+
+        $fieldset->addField(
+            'telephone',
+            'text',
+            ['name' => 'telephone', 'disabled' => 'disabled' ,'label' => __('Telephone'), 'title' => __('Telephone')]
+        );
+
+         $fieldset->addField(
+            'creation_time',
+            'text',
+            ['name' => 'creation_time', 'disabled' => 'disabled' ,'label' => __('Time'), 'title' => __('Time')]
         );
  
         $fieldset->addField(
             'comment',
             'textarea',
-            ['name' => 'comment', 'label' => __('Department Description'), 'title' => __('Department Description'), 'required' => true]
+            ['name' => 'comment', 'style' => 'height:200px;', 'disabled' => 'disabled','label' => __('Comment'), 'title' => __('Comment')]
+        );
+
+        $statusModel = $this->_objectManager->create(
+            'Custom\AdminContact\Model\ResourceModel\Status'
+        );
+
+        $fieldset->addField(
+            'status',
+            'select',
+            [
+                'name' => 'status',
+                'label' => __('Status'), 
+                'title' => __('Status'),
+                'options' => $statusModel->toOptionArray()
+            ]
+        );
+        
+        $fieldset->addField(
+            'sendReply',
+            'checkbox',
+            ['name' => 'sendReply', 'label' => __('Send Reply'), 'title' => __('Send Reply')]
+        );
+
+        $fieldset->addField(
+            'answer',
+            'textarea',
+            ['name' => 'answer', 'style' => 'height:200px;', 'label' => __('Answer'), 'title' => __('Answer')]
         );
  
         $form->setValues($model->getData());

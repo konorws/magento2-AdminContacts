@@ -43,7 +43,7 @@ class Edit extends \Magento\Backend\App\AbstractAction
         $data = $model->getData();
         
 
-        return $this->resultFactory->create();
+        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
 
        
