@@ -38,9 +38,6 @@ class Edit extends \Magento\Backend\App\AbstractAction
             $this->_redirect('*/*/');
             return;
         }
-
-
-        $data = $model->getData();
         
 
         return $this->resultFactory->create(ResultFactory::TYPE_PAGE);

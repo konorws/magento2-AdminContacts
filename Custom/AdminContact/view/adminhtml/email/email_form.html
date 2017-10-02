@@ -1,0 +1,22 @@
+{{template config_path="design/email/header_template"}}
+
+<table style="width:100%;">
+	<thead>
+		<tr>
+			<td>Answer</td>
+		</tr>
+	</thead>
+	<body>
+		<tr>
+			<td>
+				{{trans "Answer: %answer" answer=$data.answer}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{trans "Comment: %comment" comment=$data.comment}}
+			</td>
+		</tr>
+	</body>
+</table>
+{{template config_path="design/email/footer_template"}}
