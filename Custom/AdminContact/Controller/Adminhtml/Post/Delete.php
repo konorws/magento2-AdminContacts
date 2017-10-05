@@ -4,8 +4,8 @@ namespace Custom\AdminContact\Controller\Adminhtml\Post;
 
 class Delete extends \Magento\Backend\App\AbstractAction
 {
-    protected $_objectManager;
     protected $_contactFactory;
+    protected $_coreRegistry;
 
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
