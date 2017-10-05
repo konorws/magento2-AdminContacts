@@ -1,8 +1,8 @@
-<?
+<?php
 
 namespace Custom\AdminContact\Plugin;
 
-class PostPlugin
+Class PostPlugin
 {
     protected $request;
     protected $_contactFactory;
