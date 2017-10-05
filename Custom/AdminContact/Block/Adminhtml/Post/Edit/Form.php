@@ -8,19 +8,19 @@ class Form extends Generic
 {
  
     protected $_systemStore;
-    protected $_objectManager;
+    protected $_contactFactory;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Store\Model\System\Store $systemStore,
-        \Magento\Framework\ObjectManagerInterface $objectmanager,
+        \Custom\AdminContact\Model\ContactFactory $contactFactory,
 
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
-        $this->_objectManager = $objectmanager;
+        $this->_contactFactory = $contactFactory;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -34,7 +34,7 @@ class Form extends Generic
 
     protected function _prepareForm()
     {
-        $model = $this->_objectManager->create('Custom\AdminContact\Model\Contact');
+        $model = $this->_contactFactory->create();
         
         $postId = $this->getRequest()->getParam('post_id');
         $model->load($postId);

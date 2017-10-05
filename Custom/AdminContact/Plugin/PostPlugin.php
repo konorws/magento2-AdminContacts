@@ -1,17 +1,17 @@
 <?
 
-namespace Custom\AdminContact\Plugin;
+namespace \Custom\AdminContact\Plugin;
 
-class ModuleContactControllerIndexPost
+class PostPlugin
 {
     protected $request;
-    protected $_objectManager;
+    protected $_contactFactory;
     
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectmanager,
+        \Custom\AdminContact\Model\ContactFactory $contactFactory,
         \Magento\Framework\App\Request\Http $request
     ) {
-        $this->_objectManager = $objectmanager;
+        $this->_contactFactory = $contactFactory;
         $this->request = $request;
     }
 
@@ -36,7 +36,7 @@ class ModuleContactControllerIndexPost
                 throw new \Exception();
             }
 
-            $contactModel = $this->_objectManager->create('Custom\AdminContact\Model\Contact');
+            $contactModel = $this->_contactFactory->create();
             $data = array(
                 'name'          => $post['name'],
                 'email'         => $post['email'],
@@ -48,7 +48,9 @@ class ModuleContactControllerIndexPost
 
             $result = $contactModel->setData($data)->save();
              
- 		}    
+ 		}
+
+        return;    
         
 	}
 }

@@ -1,14 +1,13 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="\Magento\Contact\Controller\Index\Post">
+        <plugin name="custom_admincontact_plugin_postplugin" type="\Custom\AdminContact\Plugin\PostPlugin" disabled="false"/>
+    </type>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="admincontact_grid_listing_data_source" xsi:type="string">Custom\AdminContact\Model\ResourceModel\Contact\Grid\Collection</item>
             </argument>
         </arguments>
-    </type>
-
-    <type name="\Magento\Contact\Controller\Index\Post">
-        <plugin name="ModuleContactControllerIndexPost" type="Custom\AdminContact\Plugin\ModuleContactControllerIndexPost" sortOrder="1"/>
     </type>
 </config>

@@ -14,7 +14,7 @@ class Save extends \Magento\Backend\App\AbstractAction
     const XML_PATH_EMAIL_SENDER     = 'contact/email/sender_email_identity';
 
 
-    protected $_objectManager;
+    protected $_contactFactory;
     protected $_coreRegistry;
     protected $_transportBuilder;
     protected $inlineTranslation;
@@ -29,11 +29,11 @@ class Save extends \Magento\Backend\App\AbstractAction
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\ObjectManagerInterface $objectmanager
+        \Custom\AdminContact\Model\ContactFactory $contactFactory
     ) {
         parent::__construct($context);
         $this->_coreRegistry = $coreRegistry;
-        $this->_objectManager = $objectmanager;
+        $this->_contactFactory = $contactFactory;
         $this->_transportBuilder = $transportBuilder;
         $this->inlineTranslation = $inlineTranslation;
         $this->scopeConfig = $scopeConfig;
@@ -45,7 +45,7 @@ class Save extends \Magento\Backend\App\AbstractAction
     	
         $postId = $this->getRequest()->getParam('post_id');
 
-        $model = $this->_objectManager->create('Custom\AdminContact\Model\Contact');
+        $model = $this->_contactFactory->create();
 
         if ($postId) {
             $model->load($postId);

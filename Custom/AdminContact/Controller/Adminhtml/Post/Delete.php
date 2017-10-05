@@ -5,16 +5,16 @@ namespace Custom\AdminContact\Controller\Adminhtml\Post;
 class Delete extends \Magento\Backend\App\AbstractAction
 {
     protected $_objectManager;
-    protected $_coreRegistry;
+    protected $_contactFactory;
 
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\ObjectManagerInterface $objectmanager
+        \Custom\AdminContact\Model\ContactFactory $contactFactory
     ) {
         parent::__construct($context);
         $this->_coreRegistry = $coreRegistry;
-        $this->_objectManager = $objectmanager;
+        $this->_contactFactory = $contactFactory;
     }
 
 
@@ -24,7 +24,7 @@ class Delete extends \Magento\Backend\App\AbstractAction
 
         $postId = $this->getRequest()->getParam('post_id');
 
-        $model = $this->_objectManager->create('Custom\AdminContact\Model\Contact');
+        $model = $this->_contactFactory->create();
 
         if ($postId) {
             $model->load($postId);
