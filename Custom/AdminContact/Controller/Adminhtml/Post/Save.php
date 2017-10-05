@@ -1,5 +1,4 @@
 <?php
-
 namespace Custom\AdminContact\Controller\Adminhtml\Post;
 
 use Magento\Framework\Controller\ResultFactory;

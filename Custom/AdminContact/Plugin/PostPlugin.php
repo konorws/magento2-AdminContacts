@@ -1,6 +1,6 @@
 <?
 
-namespace \Custom\AdminContact\Plugin;
+namespace Custom\AdminContact\Plugin;
 
 class PostPlugin
 {
