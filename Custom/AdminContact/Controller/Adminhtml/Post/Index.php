@@ -5,12 +5,12 @@ namespace Custom\AdminContact\Controller\Adminhtml\Post;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\Page;
 
-Class Index extends \Magento\Backend\App\Action
+Class Index extends  \Magento\Backend\App\AbstractAction
 {
 
     public function execute()
     {
-        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+    	return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
     }
 }
 

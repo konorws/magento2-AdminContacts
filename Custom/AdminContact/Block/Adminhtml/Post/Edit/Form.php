@@ -9,6 +9,7 @@ class Form extends Generic
  
     protected $_systemStore;
     protected $_contactFactory;
+    protected $_statusModel;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -16,10 +17,11 @@ class Form extends Generic
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Store\Model\System\Store $systemStore,
         \Custom\AdminContact\Model\ContactFactory $contactFactory,
-
+        \Custom\AdminContact\Model\ResourceModel\Status $statusModel,
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
+        $this->_statusModel = $statusModel;
         $this->_contactFactory = $contactFactory;
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -84,10 +86,6 @@ class Form extends Generic
             ['name' => 'comment', 'style' => 'height:200px;', 'disabled' => 'disabled','label' => __('Comment'), 'title' => __('Comment')]
         );
 
-        $statusModel = $this->_objectManager->create(
-            'Custom\AdminContact\Model\ResourceModel\Status'
-        );
-
         $fieldset->addField(
             'status',
             'select',
@@ -95,7 +93,7 @@ class Form extends Generic
                 'name' => 'status',
                 'label' => __('Status'), 
                 'title' => __('Status'),
-                'options' => $statusModel->toOptionArray()
+                'options' => $this->_statusModel->toOptionArray()
             ]
         );
         
